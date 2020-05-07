@@ -1,0 +1,77 @@
+﻿@model HouseRentMVCML.Model.ModelInput
+
+@{
+    ViewData["Title"] = "Price Prediction Using ML.NET";
+}
+
+
+<center>
+
+    <h2>Predict</h2>
+
+    @using (Html.BeginForm("Price", "Prediction", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <fieldset style="width: 40%">
+
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Locality)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Locality)
+                <div class="error">
+                    @Html.ValidationMessageFor(model => model.Locality)
+                </div>
+
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Area)
+            </div>
+            <div class="editor-field">
+                @Html.TextAreaFor(model => model.Area)
+                <div class="error">
+                    @Html.ValidationMessageFor(model => model.Area)
+                </div>
+
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Bedrooms)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Bedrooms)
+                <div class="error">
+                    @Html.ValidationMessageFor(model => model.Bedrooms)
+                </div>
+
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Furnishing)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Furnishing)
+            </div>
+
+
+            <p>
+                <input type="submit" value="Predict" />
+            </p>
+        </fieldset>
+    }
+
+    <div class="col-md-offset-2 col-md-4">
+        @if (ViewBag.Price != null)
+        {
+            <h3>Result</h3>
+            <h3>Approximate Rent Price:@ViewBag.Price</h3>
+        }
+    </div>
+    <div>
+        @Html.ActionLink("Back to Home", "Index", "Home")
+    </div>
+</center>
